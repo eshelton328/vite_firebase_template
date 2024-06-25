@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
+import { UserAuth } from "../../context/AuthContext";
 
 const PublicRoute = ({ page }: { page: React.JSX.Element}) => {
     const userAuth = UserAuth();
