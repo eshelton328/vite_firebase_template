@@ -22,7 +22,7 @@ const SignUp = () => {
 
     return (
         <>
-            <h1>SignUp</h1>
+            <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"
