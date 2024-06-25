@@ -1,24 +1,22 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PublicRoute from "./components/PublicRoute";
+import PrivateRoute from "./components/PrivateRoute";
 import './App.css';
 
 import Home from './pages/Home';
-import Login from "./pages/SignIn";
-import Register from "./pages/SignUp";
-import { AuthContextProvider, UserAuth } from "./context/AuthContext";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const App = () => {
-    const user = UserAuth();
-    if (!user) {
-        console.log("no user")
-    }
 
     return (
         <AuthContextProvider>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Home />}/>
-                    <Route path="/signin" element={<Login />}/>
-                    <Route path="/signup" element={<Register />}/>
+                    <Route path="/signin" element={<PublicRoute page={<SignIn />} />}/>
+                    <Route path="/signup" element={<PublicRoute page={<SignUp />} />} />
+                    <Route path="/" element={<PrivateRoute page={<Home />} />}/>
                 </Routes>
             </Router>
         </AuthContextProvider>
