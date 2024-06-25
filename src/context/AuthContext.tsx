@@ -12,6 +12,7 @@ import { auth } from '../services/firebase';
 
 interface UserContextType {
     user: FirebaseUser | null;
+    loading: boolean;
     createUser: (email: string, password: string) => Promise<unknown>;
     signInUser: (email: string, password: string) => Promise<unknown>;
     signOutUser: () => Promise<void>;
@@ -21,6 +22,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<FirebaseUser | null>(null);
+    const [loading, setLoading] = useState(true);
 
     const createUser = (email: string, password: string) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -38,12 +40,13 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log(currentUser);
             setUser(currentUser);
+            setLoading(false);
         });
         return () => unsubscribe();
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, createUser, signInUser, signOutUser }}>
+        <UserContext.Provider value={{ user, loading, createUser, signInUser, signOutUser }}>
             {children}
         </UserContext.Provider>
     );

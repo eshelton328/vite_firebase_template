@@ -5,14 +5,15 @@ import { UserAuth } from "../context/AuthContext";
 const PrivateRoute = ({ page }: { page: React.JSX.Element}) => {
     const userAuth = UserAuth();
     const user = userAuth?.user ?? null;
+    const loading = userAuth?.loading ?? true;
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!user) {
+        if (!user && !loading) {
             navigate('/signin');
         }
-    }, [user, navigate])
+    }, [user, loading, navigate])
 
     return user ? page : null;
 }
