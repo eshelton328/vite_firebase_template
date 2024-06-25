@@ -8,6 +8,8 @@ import {
 } from 'firebase/auth';
 import { auth } from '../services/firebase';
 
+// TODO: implement forgot password
+
 interface UserContextType {
     user: FirebaseUser | null;
     createUser: (email: string, password: string) => Promise<unknown>;
