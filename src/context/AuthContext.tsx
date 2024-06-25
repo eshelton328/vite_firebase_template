@@ -1,12 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged,
-    User as FirebaseUser
-} from 'firebase/auth';
-import { auth } from '../services/firebase';
+import { User as FirebaseUser } from 'firebase/auth';
+import { firebase } from '../lib/firebase';
 
 // TODO: implement forgot password
 
@@ -25,24 +19,23 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     const [loading, setLoading] = useState(true);
 
     const createUser = (email: string, password: string) => {
-        return createUserWithEmailAndPassword(auth, email, password)
+        return firebase.createUser(email, password);
     };
 
     const signInUser = (email: string, password: string) => {
-        return signInWithEmailAndPassword(auth, email, password)
+        return firebase.signInUser(email, password)
     };
 
     const signOutUser = () => {
-        return signOut(auth)
+        return firebase.signOutUser()
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        return () => firebase.unsubscribe((currentUser) => {
             console.log(currentUser);
             setUser(currentUser);
             setLoading(false);
         });
-        return () => unsubscribe();
     }, []);
 
     return (
