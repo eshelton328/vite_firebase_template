@@ -1,6 +1,6 @@
 # Frontend Auth Template (TypeScript + Firebase)
 
-This template provides a minimal setup to get your React frontend up and running with user Authentication
+This template expands upon the Vite + SWC template and provides a minimal setup to get your React frontend up and running with user Authentication.
 
 ## Project Setup
 - In the root of your project create a file `.env.local` and add the following fields below. After refistering your Firebase app you will need to update these values.
