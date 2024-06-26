@@ -2,14 +2,10 @@
 
 This template provides a minimal setup to get your React frontend up and running with user Authentication
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+## Project Setup
+- In the root of your project create a file `.env.local` and add the following fields below. After refistering your Firebase app you will need to update these values.
 
 ```env
-//.env.local
 VITE_FIREBASE_API_KEY=
 VITE_FIREBASE_AUTH_DOMAIN=
 VITE_FIREBASE_PROJECT_ID=
