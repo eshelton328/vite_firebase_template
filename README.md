@@ -1,4 +1,4 @@
-# Frontend Auth Template (TypeScript + Firebase)
+# Frontend Auth Template (React + Firebase)
 
 This template expands upon the Vite + SWC template and provides a minimal setup to get your React frontend up and running with user Authentication.
 
